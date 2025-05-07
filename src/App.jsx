@@ -2,13 +2,7 @@ import styled from "styled-components"
 import GlobalStyles from "./styles/GlobalStyles"
 import Button from "./ui/Button"
 import Input from "./ui/Input"
-
-const H1 = styled.h1`
-  font-size:30px;
-  font-weight: 600;
-`
-
-
+import Heading from "./ui/Heading"
 
 const StyledApp = styled.div`
   display: flex;
@@ -21,10 +15,12 @@ export default function App() {
     <>
       <GlobalStyles />
       <StyledApp>
-        <H1>Wild oss</H1>
+        <Heading as='h1'>Wild oss</Heading>
         <Button>Check in</Button>
         <Button>Check out</Button>
+        <Heading as='h2'>H2 el</Heading>
         <Input type="number" placeholder="number of guests" />
+        <Heading as='h3'>H3 el</Heading>
       </StyledApp>
     </>
   )

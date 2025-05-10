@@ -1,5 +1,5 @@
 import supabase from "./supabase"
-import { fromSnakeToCamel } from "../utils/transformKeys"
+import { fromSnakeToCamel, fromCamelToSnake } from "../utils/transformKeys"
 
 export async function getCabins(){
   const { data, error } = await supabase
@@ -13,9 +13,23 @@ export async function getCabins(){
   return fromSnakeToCamel(data)
 }
 
+export async function createCabin(newCabin) {
+  const formattedCabin = fromCamelToSnake(newCabin)
+
+  const { data, error } = await supabase
+    .from('cabins').insert([formattedCabin]).select()
+
+  if(error) {
+    console.log(error)
+    throw new Error('Cabins could not be loaded.')
+  }
+
+  return fromSnakeToCamel(data)
+}
+
 export async function deleteCabin(id) {
   const { error } = await supabase
-    .from('cabinsa').delete().eq('id', id)
+    .from('cabins').delete().eq('id', id)
 
   if(error) {
     console.log(error)

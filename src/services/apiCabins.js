@@ -13,19 +13,25 @@ export async function getCabins(){
   return fromSnakeToCamel(data)
 }
 
-export async function createCabin(newCabin) {
-  const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll('/', '')
-  const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`
+export async function createEditCabin(newCabin, id) {
+  const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl)
+  const imageName = `${Math.random()}-${newCabin.image?.name}`.replaceAll('/', '')
+  const imagePath = hasImagePath ? newCabin.image : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`
 
   // https://iroivpqgotnwcsjscmxs.supabase.co/storage/v1/object/public/cabin-images//cabin-001.jpg
 
   const formattedCabin = fromCamelToSnake(newCabin)
 
-  // 1. create cabin
-  const { data, error } = await supabase
-    .from('cabins').insert([{
-      ...formattedCabin, image: imagePath
-    }]).select()
+  // 1. create/edit cabin
+  let query = supabase.from('cabins')
+
+  // A) CREATE
+  if(!id) query = query.insert([{ ...formattedCabin, image: imagePath }])
+
+  // B) EDIT
+  if(id) query = query.update({ ...formattedCabin, image: imagePath }).eq('id', id)
+
+  const { data, error } = await query.select().single()
 
   if(error) {
     console.log(error)

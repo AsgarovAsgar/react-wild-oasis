@@ -1,4 +1,6 @@
 import supabase from "./supabase";
+import { fromSnakeToCamel, fromCamelToSnake } from "../utils/transformKeys"
+
 
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
@@ -7,14 +9,17 @@ export async function getSettings() {
     console.error(error);
     throw new Error("Settings could not be loaded");
   }
-  return data;
+
+  return fromSnakeToCamel(data);
 }
 
 // We expect a newSetting object that looks like {setting: newValue}
 export async function updateSetting(newSetting) {
+  const formattedNewSetting = fromCamelToSnake(newSetting);
+
   const { data, error } = await supabase
     .from("settings")
-    .update(newSetting)
+    .update(formattedNewSetting)
     // There is only ONE row of settings, and it has the ID=1, and so this is the updated one
     .eq("id", 1)
     .single();
@@ -23,5 +28,6 @@ export async function updateSetting(newSetting) {
     console.error(error);
     throw new Error("Settings could not be updated");
   }
-  return data;
+  
+  return fromSnakeToCamel(data);
 }

@@ -36,10 +36,15 @@ export default function CabinTable() {
         <div>Price</div>
         <div>Discount</div>
       </Table.Header>
+
+      <Table.Body data={cabins} render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />} />
+
+      {/* <Table.Body>
+        {cabins.map(cabin =>  
+          <CabinRow cabin={cabin} key={cabin.id} />
+        )}
+      </Table.Body> */}
       
-      {cabins.map(cabin =>  
-        <CabinRow cabin={cabin} key={cabin.id} />
-      )}
     </Table>
   )
 }

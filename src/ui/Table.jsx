@@ -83,8 +83,10 @@ function TableRow({ children }) {
   return <StyledRow role="row" columns={columns}>{children}</StyledRow>
 }
 
-function TableBody({ children }) {
-  return <StyledBody>{children}</StyledBody>
+function TableBody({ data, render }) {
+  if(!data) return <Empty>No data to show at the moment</Empty>
+
+  return <StyledBody>{data.map(render)}</StyledBody>
 } 
 
 function TableFooter({ children }) {

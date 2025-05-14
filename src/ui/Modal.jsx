@@ -53,19 +53,7 @@ const Button = styled.button`
   }
 `;
 
-// function Modal({ onClose, children }) {
-//   return createPortal(
-//     <Overlay>
-//       <StyledModal>
-//         <Button onClick={onClose}>
-//           <HiXMark />
-//         </Button>
-//         <div>{children}</div>
-//       </StyledModal>
-//     </Overlay>,
-//     document.body
-//   )
-// }
+
 
 const ModalContext = createContext()
 
@@ -110,3 +98,17 @@ Modal.Open = Open
 Modal.Window = Window
 
 export default Modal;
+
+// function Modal({ onClose, children }) {
+//   return createPortal(
+//     <Overlay>
+//       <StyledModal>
+//         <Button onClick={onClose}>
+//           <HiXMark />
+//         </Button>
+//         <div>{children}</div>
+//       </StyledModal>
+//     </Overlay>,
+//     document.body
+//   )
+// }

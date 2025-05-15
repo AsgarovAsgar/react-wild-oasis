@@ -9,7 +9,6 @@ import CreateCabinForm from "./CreateCabinForm";
 import useDeleteCabin from "./useDeleteCabin";
 import useCreateCabin from "./useCreateCabin";
 import Table from "../../ui/Table";
-import Menus from "../../ui/Menus";
 
 
 // const TableRow = styled.div`
@@ -71,28 +70,28 @@ export default function CabinRow({ cabin }) {
         <div>Fits up to {maxCapacity}</div>
         <Price>{formatCurrency(regularPrice)}</Price>
         {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
-
         <div>
-          <Modal>
-            <Menus.Menu>
-              <Menus.Toggle id={cabinId} />
-              <Menus.List id={cabinId}>
-                <Menus.Button disabled={isCreating} icon={<HiSquare2Stack />} onClick={handleDuplicate}>Duplicate</Menus.Button>
+          <button disabled={isCreating} onClick={handleDuplicate}>
+            <HiSquare2Stack/>
+          </button>
 
-                <Modal.Open opens="edit">
-                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-                </Modal.Open>
-                
-                <Modal.Open opens="delete">
-                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
-                </Modal.Open>
-              </Menus.List>
-            </Menus.Menu>
-            
+          <Modal>
+            <Modal.Open opens="edit">
+              <button>
+                <HiPencil />
+              </button>
+            </Modal.Open>
             <Modal.Window name="edit">
               <CreateCabinForm cabinToEdit={cabin} />
             </Modal.Window>
-            
+          </Modal>
+
+          <Modal>
+            <Modal.Open opens="delete">
+              <button>
+                <HiTrash />
+              </button>
+            </Modal.Open>
             <Modal.Window name="delete">
               <ConfirmDelete
                 resourceName={name}

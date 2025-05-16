@@ -1,5 +1,5 @@
 import supabase, { supabaseUrl } from "./supabase"
-import { fromSnakeToCamel, fromCamelToSnake } from "../utils/transformKeys"
+// import { fromSnakeToCamel, fromCamelToSnake } from "../utils/transformKeys"
 
 export async function getCabins(){
   const { data, error } = await supabase
@@ -10,7 +10,7 @@ export async function getCabins(){
     throw new Error('Cabins could not be loaded.')
   }
 
-  return fromSnakeToCamel(data)
+  return data
 }
 
 export async function createEditCabin(newCabin, id) {
@@ -20,16 +20,14 @@ export async function createEditCabin(newCabin, id) {
 
   // https://iroivpqgotnwcsjscmxs.supabase.co/storage/v1/object/public/cabin-images//cabin-001.jpg
 
-  const formattedCabin = fromCamelToSnake(newCabin)
-
   // 1. create/edit cabin
   let query = supabase.from('cabins')
 
   // A) CREATE
-  if(!id) query = query.insert([{ ...formattedCabin, image: imagePath }])
+  if(!id) query = query.insert([{ ...newCabin, image: imagePath }])
 
   // B) EDIT
-  if(id) query = query.update({ ...formattedCabin, image: imagePath }).eq('id', id)
+  if(id) query = query.update({ ...newCabin, image: imagePath }).eq('id', id)
 
   const { data, error } = await query.select().single()
 
@@ -39,7 +37,7 @@ export async function createEditCabin(newCabin, id) {
   }
 
   // 2. upload image
-  if(hasImagePath) return fromSnakeToCamel(data)
+  if(hasImagePath) return data
      
   const { error: storageError } = await supabase.storage
     .from('cabin-images')
@@ -52,7 +50,7 @@ export async function createEditCabin(newCabin, id) {
     throw new Error('Cabins image could not be uploaded and the cabin was not created.')
   }
 
-  return fromSnakeToCamel(data)
+  return data
 }
 
 export async function deleteCabin(id) {

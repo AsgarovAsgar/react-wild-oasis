@@ -1,19 +1,18 @@
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
-import { fromSnakeToCamel, fromCamelToSnake } from "../utils/transformKeys"
 
 
 export async function getBookings() {
   const { data, error } = await supabase
     .from("bookings")
-    .select("*, cabins(name), guests(full_name, email)");
+    .select("*, cabins(name), guests(fullName, email)");
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
 
-  return fromSnakeToCamel(data);
+  return data;
 }
 
 export async function getBooking(id) {

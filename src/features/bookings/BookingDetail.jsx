@@ -12,6 +12,8 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 
 import useBooking from "./useBooking";
 import BookingDataBox from "./BookingDataBox";
+import useCheckout from "../check-in-out/useCheckout";
+
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -20,7 +22,8 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const { isLoading, booking } = useBooking();
+  const {isLoading, booking} = useBooking();
+  const {checkout, isCheckingOut} = useCheckout();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
@@ -48,8 +51,11 @@ function BookingDetail() {
 
       <ButtonGroup>
         {status === "unconfirmed" && (
-            <Button size="small" onClick={() => navigate(`/checkin/${id}`)}>Check in</Button>
-          )}
+          <Button size="small" onClick={() => navigate(`/checkin/${id}`)}>Check in</Button>
+        )}
+        {status === "checked-in" && (
+          <Button size="small" onClick={() => checkout(id)} disabled={isCheckingOut}>Check out</Button>
+        )}
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>

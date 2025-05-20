@@ -6,12 +6,12 @@ import { login as loginApi } from "../../services/apiAuth";
 export function useLogin() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  
+
   const {mutate: login, isLoading} = useMutation({
     mutationFn: (credentials) => loginApi(credentials),
-    onSuccess: () => {
-      queryClient.setQueryData(['user']);
-      navigate('/dashboard')
+    onSuccess: (data) => {
+      queryClient.setQueryData(['user'], data.user);
+      navigate('/dashboard', { replace: true })
     },
     onError: (error) => {
       console.log('ERROR', error)

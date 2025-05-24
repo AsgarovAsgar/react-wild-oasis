@@ -7,7 +7,7 @@ import Menus from "../../ui/Menus";
 import Empty from "../../ui/Empty";
 
 import CabinRow from "./CabinRow";
-import useCabins from "./useCabins";
+import { useCabins } from "./useCabins";
 
 export default function CabinTable() {
   const { isLoading, cabins } = useCabins()

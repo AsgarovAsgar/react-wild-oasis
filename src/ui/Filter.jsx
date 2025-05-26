@@ -45,6 +45,8 @@ function Filter({filterField, options}) {
     setSearchParams(searchParams)
   }
 
+  const isActive = (value) => value === currentFilter;
+
   return (
     <StyledFilter>
       {
@@ -52,8 +54,8 @@ function Filter({filterField, options}) {
           <FilterButton 
             key={option.value} 
             onClick={() => handleClick(option.value)} 
-            active={option.value === currentFilter}
-            disabled={option.value === currentFilter}
+            active={isActive(option.value).toString()}
+            disabled={isActive(option.value)}
           >
             {option.label}
           </FilterButton>

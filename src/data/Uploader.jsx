@@ -138,14 +138,14 @@ function Uploader() {
         gap: "8px",
       }}
     >
-      <h3>SAMPLE DATA</h3>
+      <h3 style={{ color: "var(--color-brand-600)" }}>SAMPLE DATA</h3>
 
       <Button onClick={uploadAll} disabled={isLoading}>
-        Upload ALL
+        Upload all
       </Button>
 
       <Button onClick={uploadBookings} disabled={isLoading}>
-        Upload bookings ONLY
+        Upload bookings only
       </Button>
     </div>
   );

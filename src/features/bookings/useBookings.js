@@ -13,8 +13,6 @@ export default function useBookings() {
     : { field: "status", value: filterValue };
     // : { field: "totalPrice", value: 5000, method: "gte" };
 
-  console.log('filter', filter)
-
   // SORT
   const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
   const [field, direction] = sortByRaw.split("-");

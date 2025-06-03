@@ -1,8 +1,59 @@
-# React + Vite
+# The Wild Oasis - Hotel Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern hotel management application built with React and Vite, designed to streamline hotel operations and guest management.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📊 **Dashboard**: Overview of hotel performance, recent stays, and daily activities
+- 🏠 **Cabin Management**: Add, edit, and manage cabin listings with details like capacity, pricing, and images
+- 📅 **Booking System**: Handle reservations, check-ins, and check-outs
+- 👥 **Guest Management**: Track guest information and stay history
+- 👤 **User Authentication**: Secure login system with protected routes
+- ⚙️ **Settings**: Configure hotel settings like breakfast pricing and booking rules
+- 🌓 **Dark Mode**: Toggle between light and dark themes
+- 📱 **Responsive Design**: Modern UI that works across all devices
+
+## Tech Stack
+
+- **Frontend Framework**: React 18 with Vite
+- **State Management**: React Query for server state
+- **Styling**: Styled Components
+- **Routing**: React Router v6
+- **Authentication**: Supabase
+- **Data Visualization**: Recharts
+- **Form Handling**: React Hook Form
+- **Notifications**: React Hot Toast
+- **Icons**: React Icons
+- **Date Handling**: date-fns
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## License
+
+Private - All rights reserved

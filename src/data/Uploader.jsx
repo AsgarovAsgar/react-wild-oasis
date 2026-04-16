@@ -2,6 +2,7 @@ import { useState } from "react";
 import { isFuture, isPast, isToday } from "date-fns";
 import supabase from "../services/supabase";
 import Button from "../ui/Button";
+import SpinnerMini from "../ui/SpinnerMini";
 import { subtractDates } from "../utils/helpers";
 
 import { bookings } from "./data-bookings";
@@ -102,9 +103,12 @@ async function createBookings() {
 
 function Uploader() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isAllLoading, setIsAllLoading] = useState(false);
+  const [isBookingsLoading, setIsBookingsLoading] = useState(false);
 
   async function uploadAll() {
     setIsLoading(true);
+    setIsAllLoading(true);
     // Bookings need to be deleted FIRST
     await deleteBookings();
     await deleteGuests();
@@ -116,13 +120,18 @@ function Uploader() {
     await createBookings();
 
     setIsLoading(false);
+    setIsAllLoading(false);
   }
 
   async function uploadBookings() {
     setIsLoading(true);
+    setIsBookingsLoading(true);
+
     await deleteBookings();
     await createBookings();
+    
     setIsLoading(false);
+    setIsBookingsLoading(false);
   }
 
   return (
@@ -141,11 +150,11 @@ function Uploader() {
       <h3 style={{ color: "var(--color-brand-600)" }}>SAMPLE DATA</h3>
 
       <Button onClick={uploadAll} disabled={isLoading}>
-        Upload all
+        {isAllLoading ? <SpinnerMini /> : "Upload all"}
       </Button>
 
       <Button onClick={uploadBookings} disabled={isLoading}>
-        Upload bookings only
+        {isBookingsLoading ? <SpinnerMini /> : "Upload bookings only"}
       </Button>
     </div>
   );

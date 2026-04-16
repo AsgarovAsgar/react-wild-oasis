@@ -86,11 +86,11 @@ function CheckinBooking() {
       )}
 
       <Box>
-        <Checkbox 
-          id="confirm" 
-          checked={confirmPaid} 
-          onChange={() => setConfirmPaid((confirm) => !confirm)} 
-          disabled={booking.isPaid || isCheckingIn}
+        <Checkbox
+          id="confirm"
+          checked={confirmPaid}
+          onChange={() => setConfirmPaid((confirm) => !confirm)}
+          disabled={!addBreakfast && booking.isPaid || isCheckingIn}
         >
           I confirm that {guests.fullName} has paid the total amount of {displayTotalPrice}
         </Checkbox>

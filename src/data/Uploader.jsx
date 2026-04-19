@@ -121,6 +121,7 @@ function Uploader() {
 
     setIsLoading(false);
     setIsAllLoading(false);
+    window.location.reload();
   }
 
   async function uploadBookings() {
@@ -129,9 +130,10 @@ function Uploader() {
 
     await deleteBookings();
     await createBookings();
-    
+
     setIsLoading(false);
     setIsBookingsLoading(false);
+    window.location.reload();
   }
 
   return (

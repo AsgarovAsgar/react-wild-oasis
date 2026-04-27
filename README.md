@@ -1,15 +1,15 @@
-# The Wild Oasis - Hotel Management System
+# The Wild Oasis Admin Panel - Cabin Management System
 
-A modern hotel management application built with React and Vite, designed to streamline hotel operations and guest management.
+A modern cabin management application built with React and Vite, designed to streamline cabin operations and guest management.
 
 ## Features
 
-- 📊 **Dashboard**: Overview of hotel performance, recent stays, and daily activities
+- 📊 **Dashboard**: Overview of cabin performance, recent stays, and daily activities
 - 🏠 **Cabin Management**: Add, edit, and manage cabin listings with details like capacity, pricing, and images
 - 📅 **Booking System**: Handle reservations, check-ins, and check-outs
 - 👥 **Guest Management**: Track guest information and stay history
 - 👤 **User Authentication**: Secure login system with protected routes
-- ⚙️ **Settings**: Configure hotel settings like breakfast pricing and booking rules
+- ⚙️ **Settings**: Configure cabin settings like breakfast pricing and booking rules
 - 🌓 **Dark Mode**: Toggle between light and dark themes
 - 📱 **Responsive Design**: Modern UI that works across all devices
 
